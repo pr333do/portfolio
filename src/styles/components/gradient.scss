@@ -1,0 +1,15 @@
+.gradient {
+  position: fixed;
+  z-index: -1;
+  transform: scale(3);
+
+  --gradient-color-1: #76797c;
+  --gradient-color-2: #252525;
+  --gradient-color-3: #16141b;
+  --gradient-color-4: #000000;
+}
+
+.gradient__canvas {
+  width: 100%;
+  height: 100vh;
+}

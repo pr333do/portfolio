@@ -1,0 +1,12 @@
+:root {
+  --clr-white: 0 100% 100%;
+  --clr-black: 0 0% 0%;
+  --clr-sprout: 102 29% 73%;
+
+  --text-clr: hsl(var(--clr-white));
+  --accent-clr: hsl(var(--clr-sprout));
+
+  --neon-shadow: 0px 0px 12px currentColor;
+
+  --surface-clr: hsl(var(--clr-black));
+}
