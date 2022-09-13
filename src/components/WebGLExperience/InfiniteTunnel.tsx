@@ -99,6 +99,7 @@ const InfiniteTunnel = () => {
         intensity={10}
       />
       <directionalLight color="#ffffff" intensity={1} position={[1, 1, 0]} />
+
       <mesh>
         <tubeGeometry
           ref={ref => (animationConfig.current.geometry = ref)}
@@ -118,7 +119,7 @@ const InfiniteTunnel = () => {
       </mesh>
 
       <EffectComposer>
-        <Grid scale={0.9} />
+        <Grid scale={1.4} />
       </EffectComposer>
     </>
   )

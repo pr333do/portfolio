@@ -50,13 +50,36 @@
 
   color: var(--accent-clr);
 
+
   span {
-    filter: drop-shadow(var(--neon-shadow)) blur(0.5px);
+    filter: drop-shadow(var(--neon-shadow));
+    display: block;
+
+    &:nth-of-type(2) {
+      padding-inline-start: 8rem;
+    }
+
+    &:nth-of-type(4) {
+      padding-inline-end: 8rem;
+    }
 
     &.pixel {
       font-family: 'DotGothic16';
       color: var(--text-clr);
       margin-inline: 0.2rem;
+    }
+  }
+
+  @include media ("<phone") {
+    span {
+
+      &:nth-of-type(2) {
+        padding-inline-start: 3rem;
+      }
+
+      &:nth-of-type(4) {
+        padding-inline-end: 2rem;
+      }
     }
   }
 }
