@@ -1,5 +1,5 @@
 import { useFrame } from '@react-three/fiber'
-import { EffectComposer, Grid } from '@react-three/postprocessing'
+import { EffectComposer, Grid, Bloom } from '@react-three/postprocessing'
 import { useRef, memo } from 'react'
 import * as THREE from 'three'
 
@@ -50,6 +50,8 @@ const InfiniteTunnel = () => {
     uCameraPosition: { type: 'v3', value: new THREE.Vector3() },
   }
 
+  const path = new CustomSinCurve(10)
+
   useFrame(({ camera }) => {
     const { geometry, material, binormal, normal, light } =
       animationConfig.current
@@ -89,8 +91,6 @@ const InfiniteTunnel = () => {
     material.uniforms.uCameraPosition.value = pos
   })
 
-  const path = new CustomSinCurve(10)
-
   return (
     <>
       <pointLight
@@ -118,8 +118,9 @@ const InfiniteTunnel = () => {
         />
       </mesh>
 
-      <EffectComposer>
-        <Grid scale={1.4} />
+      <EffectComposer multisampling={8}>
+        <Grid scale={2} lineWidth={0.001} />
+        <Bloom radius={0} luminanceThreshold={0} intensity={1.2} />
       </EffectComposer>
     </>
   )

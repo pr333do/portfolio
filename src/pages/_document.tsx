@@ -39,12 +39,12 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Inter&display=swap"
             rel="stylesheet"
           />
-          <link
+          {/* <link
             rel="preload"
             href="/fonts/roadam/roadam-regular.woff2"
             as="font"
             type="font/woff2"
-          />
+          /> */}
         </Head>
         <body>
           <Main />
