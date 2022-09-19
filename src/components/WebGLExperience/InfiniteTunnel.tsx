@@ -31,6 +31,7 @@ interface IAnimationConfig {
   material: THREE.ShaderMaterial
   camera: THREE.PerspectiveCamera
   light: THREE.PointLight
+  now: number
 }
 
 const InfiniteTunnel = () => {
@@ -41,6 +42,7 @@ const InfiniteTunnel = () => {
     material: null,
     camera: null,
     light: null,
+    now: Date.now(),
   })
 
   const uniforms = {
@@ -53,13 +55,14 @@ const InfiniteTunnel = () => {
   const path = new CustomSinCurve(10)
 
   useFrame(({ camera }) => {
-    const { geometry, material, binormal, normal, light } =
+    const { geometry, material, binormal, normal, now } =
       animationConfig.current
 
-    const now = Date.now()
     const looptime = 40 * 1000
     const t = (now % looptime) / looptime
     const pos = geometry.parameters.path.getPoint(t)
+
+    animationConfig.current.now += 10
 
     const segments = geometry.tangents.length
     const pickt = t * segments
@@ -76,7 +79,6 @@ const InfiniteTunnel = () => {
 
     pos.add(normal.clone().multiplyScalar(offset))
     camera.position.copy(pos)
-    light.position.copy(pos)
 
     const lookAtPos = geometry.parameters.path.getPoint(
       (t + 1 / geometry.parameters.path.getLength()) % 1,
@@ -93,13 +95,6 @@ const InfiniteTunnel = () => {
 
   return (
     <>
-      <pointLight
-        ref={ref => (animationConfig.current.light = ref)}
-        color="#ffffff"
-        intensity={10}
-      />
-      <directionalLight color="#ffffff" intensity={1} position={[1, 1, 0]} />
-
       <mesh>
         <tubeGeometry
           ref={ref => (animationConfig.current.geometry = ref)}

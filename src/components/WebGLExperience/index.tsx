@@ -1,45 +1,32 @@
-import { AdaptiveDpr } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { memo, ReactNode, Suspense } from 'react'
+import { memo, ReactNode } from 'react'
 
 interface IWebGLExperienceProps {
   children: ReactNode
+  frameloop?: 'never' | 'always' | 'demand'
 }
 
-const WebGLExperience = ({ children }: IWebGLExperienceProps) => {
+const WebGLExperience = ({
+  children,
+  frameloop = 'always',
+}: IWebGLExperienceProps) => {
   return (
     <div className="web-gl-experience">
-      <Suspense
-        fallback={
-          <div className="web-gl-experience__loader">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur
-            nobis distinctio tenetur modi dolores? Qui dolor tempora labore
-            quaerat officia! Velit adipisci, voluptates est laudantium iste modi
-            ipsa animi ad? Lorem ipsum dolor sit, amet consectetur adipisicing
-            elit. Aspernatur nobis distinctio tenetur modi dolores? Qui dolor
-            tempora labore quaerat officia! Velit adipisci, voluptates est
-            laudantium iste modi ipsa animi ad? Lorem ipsum dolor sit, amet
-            consectetur adipisicing elit. Aspernatur nobis distinctio tenetur
-            modi dolores? Qui dolor tempora labore quaerat officia! Velit
-            adipisci, voluptates est laudantium iste modi ipsa animi ad?
-          </div>
-        }
+      <Canvas
+        linear
+        dpr={1}
+        gl={{
+          antialias: false,
+          alpha: false,
+          precision: 'highp',
+          powerPreference: 'low-power',
+          failIfMajorPerformanceCaveat: true,
+        }}
+        id="canvas"
+        frameloop={frameloop}
       >
-        <Canvas
-          linear
-          dpr={1}
-          gl={{
-            antialias: false,
-            alpha: false,
-            precision: 'highp',
-            powerPreference: 'low-power',
-            failIfMajorPerformanceCaveat: true,
-          }}
-        >
-          {children}
-          <AdaptiveDpr pixelated />
-        </Canvas>
-      </Suspense>
+        {children}
+      </Canvas>
     </div>
   )
 }

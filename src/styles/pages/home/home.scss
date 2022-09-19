@@ -4,40 +4,22 @@
 
 .home__wrapper {
   @extend %page__wrapper;
+}
+
+.home__hero {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+
   @extend %space-between;
   flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
 
-  height: 100%;
+  transform-origin: center bottom;
 }
 
-.home__header {
-  @extend %space-between;
-  width: calc(100% - 3.2rem);
 
-  margin: 1.6rem;
-  padding: 1.6rem;
-  border-radius: 0.8rem;
-
-  background-color: rgba($color: #000000, $alpha: 0.5);
-  backdrop-filter: blur(100px);
-
-  @include media ("<phone") {
-    width: calc(100% - 1.6rem);
-    padding: 0.8rem;
-    margin: 0.8rem;
-  }
-}
-
-.home__last-updated,
-.home__status {
-  --gap: 2.4rem;
-  @extend %center;
-  @extend %paragraph-16;
-
-  @include media ("<phone") {
-    --gap: 0.8rem;
-  }
-}
 
 .home__main {
   @extend %center;
@@ -96,4 +78,64 @@
 .home__link {
   @extend %title-22;
   filter: drop-shadow(var(--neon-shadow));
+}
+
+.home__about {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  max-height: 100vh;
+  padding: 6.2rem;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+
+  background-color: #000000;
+  color: black;
+  filter: drop-shadow(var(--neon-shadow));
+}
+
+.home__about__title,
+.home__about__decoration {
+  @extend %title-128;
+  max-width: 3ch;
+  word-wrap: break-word;
+  word-break: break-all;
+
+  color: var(--text-clr);
+  text-shadow: var(--text-shadow);
+
+}
+
+.home__about__decoration {
+  grid-row: 2;
+  align-self: flex-end;
+  line-height: 100%;
+  height: 7.5rem;
+  overflow: hidden;
+}
+
+.home__about__paragraph {
+  @extend %paragraph-18;
+  max-width: 32ch;
+  color: var(--text-clr);
+  text-shadow: var(--text-shadow);
+}
+
+.home__about__img {
+  align-self: flex-end;
+
+  position: relative;
+  @include ratio(374, 472);
+  width: 37.4rem;
+  height: 47.2rem;
+
+  grid-row: 2;
+}
+
+.horizontal {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
 }

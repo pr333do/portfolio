@@ -3,6 +3,11 @@
   z-index: -1;
   filter: blur(1px);
 
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
   &::before {
     content: '';
     @extend %cover;
@@ -19,10 +24,4 @@
     z-index: 1;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.9) inset;
   }
-}
-
-.web-gl-experience__loader {
-  @extend %cover;
-  z-index: 22;
-  background: red;
 }

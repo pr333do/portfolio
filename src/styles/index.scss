@@ -15,9 +15,11 @@
 
 // @import './base/debug';
 
-@import './components/web-gl-experience';
 @import './components/noise';
+@import './components/status';
+@import './components/web-gl-experience';
 
 // @import './layout/header';
 
 @import './pages/home/home';
+@import './vendors/locomotive-scroll'
